@@ -24,6 +24,13 @@ public partial class EagleBot
         Timeout = TimeSpan.FromMinutes(5)
     });
     public static SlashCommandsExtension SlashCommands { get; private set; } = Client.UseSlashCommands();
+    public static HttpClient HttpClient { get; set; } = new HttpClient();
+    public static Tag[] TagList { 
+        get {
+            string index = HttpClient.GetStringAsync($"{Config.TagUrl}index.json").GetAwaiter().GetResult();
+            return JsonSerializer.Deserialize<Tag[]>(index)!;
+        }
+    }
     public static Configuration Config { 
         get {
             if (!File.Exists("./configuration.json"))
