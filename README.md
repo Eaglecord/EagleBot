@@ -1,0 +1,2 @@
+# EagleBot
+Eaglecord discord bot
