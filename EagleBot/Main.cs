@@ -12,8 +12,7 @@ public partial class EagleBot {
             if (e.Message.Channel.Id != Config.DailyEagleThread)
                 return;
             // Check if the message mentions EagleEye621
-            if (!e.Message.MentionedUsers.Contains(
-                await Client.GetUserAsync(/* EagleEye621 User Id*/ 589604959352520725)))
+            if (!e.Message.MentionedUsers.Any(user => user.Id == /* EagleEye621 User Id */ 589604959352520725))
                 return;
             // Check if the previous time Eagle was mentioned is stored
             DateTimeOffset current = e.Message.Timestamp;
