@@ -3,6 +3,12 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+# Build script
+build.bat
+
+# Configuration file
+configuration.json
+
 # User-specific files
 *.rsuser
 *.suo
