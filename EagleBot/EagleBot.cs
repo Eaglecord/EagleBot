@@ -14,7 +14,8 @@ public partial class EagleBot
         new DiscordConfiguration() {
             Token = Config.Token,
             TokenType = TokenType.Bot,
-            MinimumLogLevel = LogLevel.Information
+            MinimumLogLevel = LogLevel.Information,
+            Intents = DiscordIntents.GuildMessages
         }
     );
     public static InteractivityExtension Interactivity { get; set; } = Client.UseInteractivity(new InteractivityConfiguration() {
@@ -52,4 +53,7 @@ public class Configuration {
 
     [JsonPropertyName("tagUrl")]
     public string TagUrl { get; set; } = string.Empty;
+
+    [JsonPropertyName("dailyEagleThreadId")]
+    public ulong DailyEagleThread { get; set; } = 0;
 }
