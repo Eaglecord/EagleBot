@@ -36,7 +36,7 @@ public partial class EagleBot {
             if (!e.Message.MentionedUsers.Any(user => user.Id == /* EagleEye621 User Id */ 589604959352520725))
                 return;
             // send the timestamp of a deleted message
-            await e.Channel.SendMessageAsync($"A message pinging EagleEye621 by {e.Message.Author.Mention} <t:{e.Message.CreationTimestamp.ToUnixTimeMilliseconds}:R> was deleted.");
+            await e.Channel.SendMessageAsync($"A message from {e.Message.Author.Mention} pinging EagleEye621 <t:{e.Message.Timestamp.ToUnixTimeSeconds()}:R> was deleted.");
         };
         await Task.Delay(-1);
     }
