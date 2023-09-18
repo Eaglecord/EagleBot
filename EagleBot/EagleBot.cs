@@ -11,28 +11,34 @@ namespace EagleBot;
 public partial class EagleBot
 {
     public static DiscordClient Client = new DiscordClient(
-        new DiscordConfiguration() {
+        new DiscordConfiguration()
+        {
             Token = Config.Token,
             TokenType = TokenType.Bot,
             MinimumLogLevel = LogLevel.Information,
             Intents = DiscordIntents.GuildMessages
         }
     );
-    public static InteractivityExtension Interactivity { get; set; } = Client.UseInteractivity(new InteractivityConfiguration() {
-        ButtonBehavior = ButtonPaginationBehavior.Ignore,
-        PaginationBehaviour = PaginationBehaviour.WrapAround,
-        PaginationDeletion = PaginationDeletion.DeleteMessage,
-        Timeout = TimeSpan.FromMinutes(5)
-    });
+    public static InteractivityExtension Interactivity { get; set; } = Client.UseInteractivity(
+        new InteractivityConfiguration()
+        {
+            ButtonBehavior = ButtonPaginationBehavior.Ignore,
+            PaginationBehaviour = PaginationBehaviour.WrapAround,
+            PaginationDeletion = PaginationDeletion.DeleteMessage,
+            Timeout = TimeSpan.FromMinutes(5)
+        }
+    );
     public static SlashCommandsExtension SlashCommands { get; private set; } = Client.UseSlashCommands();
     public static HttpClient HttpClient { get; set; } = new HttpClient();
-    public static Tag[] TagList { 
+    public static Tag[] TagList
+    { 
         get {
             string index = HttpClient.GetStringAsync($"{Config.TagUrl}index.json").GetAwaiter().GetResult();
             return JsonSerializer.Deserialize<Tag[]>(index)!;
         }
     }
-    public static Configuration Config { 
+    public static Configuration Config
+    { 
         get {
             if (!File.Exists("./configuration.json"))
                 throw new FileNotFoundException("Missing configuration file in root.", "./configuration.json");
